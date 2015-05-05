@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>MainMenu</name>
+    <events>
+        <event-block sid="8015005922198903">
+            <conditions>
+                <condition id="0" name="On clicked" sid="4219597351323503" type="StartButton" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="8126585404577322" type="NicknameTextBox">
+                    <param id="0" name="Text">trim(NicknameTextBox.Text)</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="7761625659362979">
+                    <conditions>
+                        <condition id="0" inverted="1" name="Compare text" sid="8333228052928929" type="NicknameTextBox">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                            <param id="1" name="Case">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="444710224375486" type="System">
+                            <param id="0" name="Variable">PlayerName</param>
+                            <param id="1" name="Value">NicknameTextBox.Text</param>
+                        </action>
+                        <action id="-2" name="Go to layout" sid="8444173075998014" type="System">
+                            <param id="0" name="Layout">GamePlay</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3521998267720817">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="7431151105868283" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="6538600004910815" type="NicknameTextBox">
+                            <param id="0" name="Text">&quot;Anonymous&quot;</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4438345730952646" type="System">
+                            <param id="0" name="Variable">PlayerName</param>
+                            <param id="1" name="Value">NicknameTextBox.Text</param>
+                        </action>
+                        <action id="-2" name="Go to layout" sid="4688383918368726" type="System">
+                            <param id="0" name="Layout">GamePlay</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="8279481005242524">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="7045365465674551" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="4198823653631381" type="Version">
+                    <param id="0" name="Text">&quot;v&quot; &amp; projectversion</param>
+                </action>
+                <action id="0" name="Play" sid="4438412336084504" type="Audio">
+                    <param id="0" name="Audio file">Underwaterbeats - Forever</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;Background Music&quot;</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="4089193669809886">
+                    <conditions>
+                        <condition id="-10" name="For" sid="3409579046628513" type="System">
+                            <param id="0" name="Name">&quot;count&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">15</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="4026620613605182" type="BallSpanwer">
+                            <param id="0" name="X">random(140,1230)</param>
+                            <param id="1" name="Y">random(80,300)</param>
+                        </action>
+                        <action id="-14" name="Toggle boolean" sid="4078174249327358" type="BallSpanwer">
+                            <param id="0" name="Instance variable">right</param>
+                        </action>
+                        <action id="-14" name="Toggle boolean" sid="73345919882072" type="BallSpanwer">
+                            <param id="0" name="Instance variable">up</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="2475050468250022" type="BallSpanwer">
+                            <param id="0" name="Object">Ball</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action behavior="Physics" id="27" name="Set enabled" sid="7220185076440133" type="Ball">
+                            <param id="0" name="Mode">1</param>
+                        </action>
+                        <action behavior="Physics" id="12" name="Set world gravity" sid="4213734084685724" type="Ball">
+                            <param id="0" name="Gravity">0</param>
+                        </action>
+                        <action behavior="Physics" id="15" name="Set velocity" sid="1181717392586626" type="Ball">
+                            <param id="0" name="X component">random(300,500) * ((BallSpanwer.right) ? 1 : -1)</param>
+                            <param id="1" name="Y component">random(300,500) * ((BallSpanwer.up) ? 1 : -1)</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="5485764145606708" type="BallParticles">
+                            <param id="0" name="Pin to">Ball</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="4384454754864562">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="1057013052034831" type="System">
+                    <param id="0" name="Interval (seconds)">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="6882502557832569" type="BlockSpawner">
+                    <param id="0" name="Object">Block</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="2939158566233223" type="Block">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">0</param>
+                    <param id="2" name="Value">random(10,100)</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="8616110553533607" type="Block">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">1</param>
+                    <param id="2" name="Value">random(10,100)</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="8127660041183125" type="Block">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">2</param>
+                    <param id="2" name="Value">random(10,100)</param>
+                </action>
+                <action id="-3" name="Set position" sid="5159329729670291" type="Block">
+                    <param id="0" name="X">random(140,1230)</param>
+                    <param id="1" name="Y">random(80,300)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3431761831415078">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="4123325104769132" type="Block">
+                    <param id="0" name="Object">Block</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="9821504130836793" type="Block">
+                    <param id="0" name="X">random(140,1230)</param>
+                    <param id="1" name="Y">random(80,300)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7339975404784205">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="6039854919453088" type="Ball">
+                    <param id="0" name="Object">Block</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="8862817389876989" type="Block">
+                    <param id="0" name="Object">BlockParticles</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="788711094629298" type="BlockParticles">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">0</param>
+                    <param id="2" name="Value">random(10,100)</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="9490650620392428" type="BlockParticles">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">1</param>
+                    <param id="2" name="Value">random(10,100)</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="4477238951658036" type="BlockParticles">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">2</param>
+                    <param id="2" name="Value">random(10,100)</param>
+                </action>
+                <action id="-9" name="Destroy" sid="8634911018759663" type="Block" />
+            </actions>
+        </event-block>
+        <event-block sid="9008927759113417">
+            <conditions>
+                <condition id="0" name="On clicked" sid="2572921444810153" type="DisableMusicButton" />
+            </conditions>
+            <actions>
+                <action id="6" name="Stop" sid="162719385345533" type="Audio">
+                    <param id="0" name="Tag">&quot;Background Music&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="2877165988359262" type="System">
+                    <param id="0" name="Variable">BackgroundMusicEnabled</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

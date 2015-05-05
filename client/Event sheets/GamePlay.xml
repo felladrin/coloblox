@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>GamePlay</name>
+    <events>
+        <variable constant="0" name="CurrentLevel" sid="4428749630902663" static="0" type="number">1</variable>
+        <variable constant="0" name="BackgroundMusicEnabled" sid="2115018777208609" static="0" type="number">1</variable>
+        <variable constant="0" name="HighScore" sid="7497047975743176" static="0" type="number">0</variable>
+        <variable constant="0" name="CurrentScore" sid="7813668699194283" static="0" type="number">0</variable>
+        <variable constant="0" name="PlayerName" sid="7050027575955877" static="0" type="text">Anonymous</variable>
+        <variable constant="0" name="BlocksOnScene" sid="1138306312363998" static="0" type="number">35</variable>
+        <event-block sid="7943142077617116">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="7568056851184654" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="Physics" id="12" name="Set world gravity" sid="631758568412598" type="Ball">
+                    <param id="0" name="Gravity">0</param>
+                </action>
+                <action behavior="Physics" id="15" name="Set velocity" sid="5368237529607658" type="Ball">
+                    <param id="0" name="X component">0</param>
+                    <param id="1" name="Y component">-500</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="1107813349507623" type="BallParticles">
+                    <param id="0" name="Pin to">Ball</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="4524344704738926" type="Player">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">0</param>
+                    <param id="2" name="Value">random(10,100)</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="2640978925263262" type="Player">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">1</param>
+                    <param id="2" name="Value">random(10,100)</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="1432216794424989" type="Player">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">2</param>
+                    <param id="2" name="Value">random(10,100)</param>
+                </action>
+                <action id="0" name="Set text" sid="94499927653705" type="Version">
+                    <param id="0" name="Text">&quot;Coloblox v&quot; &amp; projectversion</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="9422839767953706" type="Status">
+                    <param id="0" name="Pin to">Player</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action id="0" name="Set text" sid="7819696094065903" type="PlayerName">
+                    <param id="0" name="Text">&quot;Player: &quot; &amp; PlayerName</param>
+                </action>
+                <action id="3" name="Set timeout" sid="1273531617321935" type="AJAX">
+                    <param id="0" name="Timeout">2</param>
+                </action>
+                <action id="0" name="Set text" sid="8312806578673039" type="Scores">
+                    <param id="0" name="Text">tokenat(AJAX.LastData, 0, &quot;|#|&quot;)</param>
+                </action>
+                <action id="0" name="Set text" sid="350459951048887" type="Ranking">
+                    <param id="0" name="Text">tokenat(AJAX.LastData, 1, &quot;|#|&quot;)</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="9302049033302526">
+                    <conditions>
+                        <condition id="3" name="Local key exists" sid="2893762010008797" type="WebStorage">
+                            <param id="0" name="Key">&quot;HighScore&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="2170366809057936" type="System">
+                            <param id="0" name="Variable">HighScore</param>
+                            <param id="1" name="Value">WebStorage.LocalValue(&quot;HighScore&quot;)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="6986441430476941">
+                    <conditions>
+                        <condition id="-12" name="Repeat" sid="5932395375149479" type="System">
+                            <param id="0" name="Count">BlocksOnScene</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="3247666243004994" type="BlockSpawner">
+                            <param id="0" name="Object">Block</param>
+                            <param id="1" name="Layer">&quot;BlocksLayer&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="673475392269724">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="8982912166486905" type="System">
+                                    <param id="0" name="Object">Block</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-28" name="Set effect parameter" sid="6677987277413154" type="Block">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">random(10,100)</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="3523608920707105" type="Block">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">random(10,100)</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="112377046719042" type="Block">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">random(10,100)</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="7980184529745846" type="Block">
+                                    <param id="0" name="X">random(140,1230)</param>
+                                    <param id="1" name="Y">random(80,300)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="9892768687299004">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="7382867946342377" type="Block">
+                    <param id="0" name="Object">Block</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="9474557175058522" type="Block">
+                    <param id="0" name="X">random(140,1230)</param>
+                    <param id="1" name="Y">random(80,300)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4289993152310367">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="5282720961038066" type="System" />
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" sid="1831508682566003" type="Player">
+                    <param id="0" name="X">Mouse.X</param>
+                </action>
+                <action id="0" name="Set text" sid="744601926957766" type="Status">
+                    <param id="0" name="Text">CurrentScore &amp; &quot; / &quot; &amp; HighScore</param>
+                </action>
+                <action id="0" name="Set text" sid="4847851087971005" type="CurrentScore">
+                    <param id="0" name="Text">&quot;Current Score: &quot; &amp; CurrentScore</param>
+                </action>
+                <action id="0" name="Set text" sid="2233141444180864" type="HighScore">
+                    <param id="0" name="Text">&quot;High Score: &quot; &amp; HighScore</param>
+                </action>
+                <action id="0" name="Set text" sid="6110464838088255" type="CurrentLevel">
+                    <param id="0" name="Text">&quot;Current Level: &quot; &amp; CurrentLevel</param>
+                </action>
+                <action id="0" name="Set text" sid="1343786052823141" type="LevelNotice">
+                    <param id="0" name="Text">&quot;Level &quot; &amp; CurrentLevel</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="7410149794898344">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="8006842951205109" type="System">
+                            <param id="0" name="Variable">CurrentScore</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">HighScore</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="5970113814092147" type="System">
+                            <param id="0" name="Variable">HighScore</param>
+                            <param id="1" name="Value">CurrentScore</param>
+                        </action>
+                        <action id="0" name="Set local value" sid="3011004619879699" type="WebStorage">
+                            <param id="0" name="Key">&quot;HighScore&quot;</param>
+                            <param id="1" name="Value">CurrentScore</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="" sid="6912997815999579" title="AjaxController">
+            <sub-events>
+                <event-block sid="1839868674036229">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="9735841916622631" type="System">
+                            <param id="0" name="Interval (seconds)">2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Post to URL" sid="3490757733484915" type="AJAX">
+                            <param id="0" name="Tag">&quot;PostScore&quot;</param>
+                            <param id="1" name="URL">&quot;http://felladrin.com/games/breakout/&quot;</param>
+                            <param id="2" name="Data">&quot;player=&quot; &amp; URLEncode(PlayerName) &amp; &quot;&amp;score=&quot; &amp; str(CurrentScore)</param>
+                            <param id="3" name="Method">&quot;POST&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8608591117055351">
+                    <conditions>
+                        <condition id="0" name="On completed" sid="9235553358507311" type="AJAX">
+                            <param id="0" name="Tag">&quot;PostScore&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="6621837385810129" type="Scores">
+                            <param id="0" name="Text">tokenat(AJAX.LastData, 0, &quot;|#|&quot;)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="1376049526927992" type="Ranking">
+                            <param id="0" name="Text">tokenat(AJAX.LastData, 1, &quot;|#|&quot;)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="6205197881512882" title="BallController">
+            <sub-events>
+                <event-block sid="2182139065567978">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="416713599900355" type="System">
+                            <param id="0" name="Interval (seconds)">5</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="1404267591368767" type="BallSpanwer">
+                            <param id="0" name="Object">Ball</param>
+                            <param id="1" name="Layer">&quot;BallsLayer&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action behavior="Physics" id="15" name="Set velocity" sid="3645665369446167" type="Ball">
+                            <param id="0" name="X component">0</param>
+                            <param id="1" name="Y component">-500</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="5446341738793314" type="BallParticles">
+                            <param id="0" name="Pin to">Ball</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block any="1" sid="4453635435397245">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="2833966120072341" type="Ball">
+                            <param id="0" name="Object">BallColliders</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="3565599089639026" type="Audio">
+                            <param id="0" name="Audio file">ball</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;ball_hit&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="115199175305963">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="5893225155635132" type="Ball">
+                            <param id="0" name="Object">Block</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="5684201396247667" type="System">
+                            <param id="0" name="Variable">CurrentScore</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="3582892756053885" type="Block">
+                            <param id="0" name="Object">BlockParticles</param>
+                            <param id="1" name="Layer">&quot;GameplayDefaultLayer&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="6883201397004373" type="BlockParticles">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">0</param>
+                            <param id="2" name="Value">random(10,100)</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="8179380003867634" type="BlockParticles">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">1</param>
+                            <param id="2" name="Value">random(10,100)</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="1480529079578028" type="BlockParticles">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">2</param>
+                            <param id="2" name="Value">random(10,100)</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="8777480974746868" type="Block" />
+                    </actions>
+                </event-block>
+                <event-block sid="8358382850471499">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="1337091342095106" type="Ball">
+                            <param id="0" name="Object">Player</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="1063458149336725" type="System">
+                            <param id="0" name="Variable">CurrentScore</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="1867204594531082" type="Player">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">0</param>
+                            <param id="2" name="Value">random(10,100)</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="6787077413059562" type="Player">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">1</param>
+                            <param id="2" name="Value">random(10,100)</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="1734676096403754" type="Player">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">2</param>
+                            <param id="2" name="Value">random(10,100)</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="3499029994552018" type="Ball">
+                            <param id="0" name="Instance variable">Life</param>
+                            <param id="1" name="Value">10</param>
+                        </action>
+                        <action id="9" name="Set scale" sid="1661077940013078" type="Ball">
+                            <param id="0" name="Scale">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block any="1" sid="2773706808831574">
+                    <conditions>
+                        <condition id="-4" name="Is outside layout" sid="5708492041987389" type="Ball" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="7320686354539424" type="Ball" />
+                    </actions>
+                </event-block>
+                <event-block sid="7841616318017708">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="2042821278169449" type="System">
+                            <param id="0" name="Interval (seconds)">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="706786063457309" type="Ball">
+                            <param id="0" name="Instance variable">Life</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="9" name="Set scale" sid="2650609365195978" type="Ball">
+                            <param id="0" name="Scale">Ball.Life / 10</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="3227304978110097">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="8791424210391699" type="Ball">
+                                    <param id="0" name="Instance variable">Life</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="4209439958248161" type="Ball" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="5666858379449237">
+                    <conditions>
+                        <condition id="-38" name="Layer is empty" sid="5491188149235518" type="System">
+                            <param id="0" name="Layer">&quot;BallsLayer&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="5868803622529907" type="System">
+                            <param id="0" name="Variable">CurrentScore</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="6830542714643087" type="System">
+                            <param id="0" name="Variable">CurrentLevel</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-2" name="Go to layout" sid="2458267136563591" type="System">
+                            <param id="0" name="Layout">GamePlay</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3832634737858289">
+                    <conditions>
+                        <condition id="-38" name="Layer is empty" sid="691065983555933" type="System">
+                            <param id="0" name="Layer">&quot;BlocksLayer&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="7840908627595773" type="System">
+                            <param id="0" name="Variable">CurrentLevel</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="7962454350174082" type="LevelNotice" />
+                    </actions>
+                    <sub-events>
+                        <event-block sid="7760453442559776">
+                            <conditions>
+                                <condition id="-12" name="Repeat" sid="660410181677955" type="System">
+                                    <param id="0" name="Count">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="2145158297121634" type="BlockSpawner">
+                                    <param id="0" name="Object">Obstacle</param>
+                                    <param id="1" name="Layer">&quot;GameplayDefaultLayer&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="3214288396360206" type="Obstacle">
+                                    <param id="0" name="X">random(140,1230)</param>
+                                    <param id="1" name="Y">random(80,300)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="7999772112178923">
+                            <conditions>
+                                <condition id="-10" name="For" sid="7817820962963604" type="System">
+                                    <param id="0" name="Name">&quot;count&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">BlocksOnScene</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="4609084871945973" type="BlockSpawner">
+                                    <param id="0" name="Object">Block</param>
+                                    <param id="1" name="Layer">&quot;BlocksLayer&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="4709462323765688">
+                                    <conditions>
+                                        <condition id="-11" name="For Each" sid="3002810621597401" type="System">
+                                            <param id="0" name="Object">Block</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-28" name="Set effect parameter" sid="7516842926955116" type="Block">
+                                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                            <param id="1" name="Parameter index">0</param>
+                                            <param id="2" name="Value">random(10,100)</param>
+                                        </action>
+                                        <action id="-28" name="Set effect parameter" sid="646170072736391" type="Block">
+                                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                            <param id="1" name="Parameter index">1</param>
+                                            <param id="2" name="Value">random(10,100)</param>
+                                        </action>
+                                        <action id="-28" name="Set effect parameter" sid="1219892485097058" type="Block">
+                                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                            <param id="1" name="Parameter index">2</param>
+                                            <param id="2" name="Value">random(10,100)</param>
+                                        </action>
+                                        <action id="-3" name="Set position" sid="3240424112134663" type="Block">
+                                            <param id="0" name="X">random(140,1230)</param>
+                                            <param id="1" name="Y">random(80,300)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>
